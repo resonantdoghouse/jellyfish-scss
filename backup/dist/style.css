@@ -1,0 +1,639 @@
+* {
+  box-sizing: border-box;
+}
+
+.ocean {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1267ba;
+}
+
+.jelly-wrap {
+  width: 100px;
+  height: 100px;
+  flex-grow: 0.05;
+  -webkit-animation: left-right 2.2s ease-in-out alternate infinite;
+          animation: left-right 2.2s ease-in-out alternate infinite;
+}
+
+.jelly {
+  background: #00bcff;
+  width: 100px;
+  height: 100px;
+  border-radius: 100% 100% 0 0;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-animation: swim-intro 2s ease-in-out forwards;
+          animation: swim-intro 2s ease-in-out forwards;
+}
+.jelly::before {
+  content: "";
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  top: 10%;
+  right: 10%;
+  bottom: 0;
+  left: 10%;
+  border-radius: 100% 100% 0 0;
+}
+.jelly .eye {
+  background: black;
+  width: 6%;
+  height: 6%;
+  border-radius: 100%;
+  position: absolute;
+  -webkit-animation: blink 3.2s ease-in-out infinite;
+          animation: blink 3.2s ease-in-out infinite;
+}
+.jelly .eye:nth-of-type(1) {
+  top: auto;
+  right: 0;
+  bottom: 20%;
+  left: 20%;
+}
+.jelly .eye:nth-of-type(2) {
+  top: auto;
+  right: 20%;
+  bottom: 20%;
+  left: auto;
+}
+.jelly .eye::before {
+  content: "";
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  top: 6%;
+  right: 10%;
+  bottom: 0;
+  left: 10%;
+  border-radius: 100% 100% 0 0;
+}
+.jelly .tentacle {
+  background: #33c9ff;
+  width: 10%;
+  border-radius: 0 0 10% 10%;
+  position: absolute;
+  z-index: 1;
+}
+.jelly .tentacle:nth-of-type(1) {
+  top: auto;
+  right: 0;
+  bottom: -60%;
+  left: 0;
+  height: 60%;
+  -webkit-animation: move-tentacle-60 2s ease-in-out alternate infinite;
+          animation: move-tentacle-60 2s ease-in-out alternate infinite;
+}
+.jelly .tentacle:nth-of-type(2) {
+  top: auto;
+  right: 0;
+  bottom: -75%;
+  left: 30%;
+  height: 75%;
+  -webkit-animation: move-tentacle-75 3s ease-in-out alternate infinite;
+          animation: move-tentacle-75 3s ease-in-out alternate infinite;
+}
+.jelly .tentacle:nth-of-type(3) {
+  top: auto;
+  right: 30%;
+  bottom: -75%;
+  left: auto;
+  height: 75%;
+  -webkit-animation: move-tentacle-75 2s ease-in-out alternate infinite;
+          animation: move-tentacle-75 2s ease-in-out alternate infinite;
+}
+.jelly .tentacle:nth-of-type(4) {
+  top: auto;
+  right: 0;
+  bottom: -60%;
+  left: auto;
+  height: 60%;
+  -webkit-animation: move-tentacle-60 3s ease-in-out alternate infinite;
+          animation: move-tentacle-60 3s ease-in-out alternate infinite;
+}
+.jelly .tentacle::before {
+  content: "";
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  border-radius: 0 0 10% 10%;
+}
+
+.swimming {
+  -webkit-animation: swim 2s ease-in-out alternate infinite;
+          animation: swim 2s ease-in-out alternate infinite;
+}
+
+.bubble-wrap {
+  -webkit-animation: left-right 4.2s ease-in-out alternate infinite;
+          animation: left-right 4.2s ease-in-out alternate infinite;
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+}
+
+.bubble:nth-of-type(1) {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  bottom: auto;
+  left: auto;
+  background: radial-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.2));
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  -webkit-animation: bubble 3.6s ease-in-out alternate infinite;
+          animation: bubble 3.6s ease-in-out alternate infinite;
+}
+.bubble:nth-of-type(1)::before {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 20%;
+  height: 20%;
+  border-radius: 100%;
+}
+.bubble:nth-of-type(1)::after {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 50%;
+  height: 50%;
+  border-radius: 100%;
+}
+.bubble:nth-of-type(2) {
+  position: absolute;
+  top: auto;
+  right: 10%;
+  bottom: 10%;
+  left: auto;
+  background: radial-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.2));
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  -webkit-animation: bubble 2.1s ease-in-out alternate infinite;
+          animation: bubble 2.1s ease-in-out alternate infinite;
+}
+.bubble:nth-of-type(2)::before {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 20%;
+  height: 20%;
+  border-radius: 100%;
+}
+.bubble:nth-of-type(2)::after {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 50%;
+  height: 50%;
+  border-radius: 100%;
+}
+.bubble:nth-of-type(3) {
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: 10%;
+  left: 10%;
+  background: radial-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.2));
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  -webkit-animation: bubble 2.5s ease-in-out alternate infinite;
+          animation: bubble 2.5s ease-in-out alternate infinite;
+}
+.bubble:nth-of-type(3)::before {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 20%;
+  height: 20%;
+  border-radius: 100%;
+}
+.bubble:nth-of-type(3)::after {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 50%;
+  height: 50%;
+  border-radius: 100%;
+}
+.bubble:nth-of-type(4) {
+  position: absolute;
+  top: 10%;
+  right: auto;
+  bottom: auto;
+  left: 10%;
+  background: radial-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.2));
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  -webkit-animation: bubble 3.2s ease-in-out alternate infinite;
+          animation: bubble 3.2s ease-in-out alternate infinite;
+}
+.bubble:nth-of-type(4)::before {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 20%;
+  height: 20%;
+  border-radius: 100%;
+}
+.bubble:nth-of-type(4)::after {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 50%;
+  height: 50%;
+  border-radius: 100%;
+}
+
+.bubble-spawn {
+  -webkit-animation: float-up 6s ease-out forwards;
+          animation: float-up 6s ease-out forwards;
+}
+.bubble-spawn .bubble:nth-of-type(1) {
+  position: absolute;
+  top: 20px;
+  right: auto;
+  bottom: auto;
+  left: 52vw;
+  background: radial-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.2));
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(1)::before {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 20%;
+  height: 20%;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(1)::after {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 50%;
+  height: 50%;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(2) {
+  position: absolute;
+  top: 10px;
+  right: auto;
+  bottom: auto;
+  left: 50vw;
+  background: radial-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.2));
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(2)::before {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 20%;
+  height: 20%;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(2)::after {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 50%;
+  height: 50%;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(3) {
+  position: absolute;
+  top: 30px;
+  right: auto;
+  bottom: auto;
+  left: 48vw;
+  background: radial-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.2));
+  width: 13px;
+  height: 13px;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(3)::before {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 20%;
+  height: 20%;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(3)::after {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 50%;
+  height: 50%;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(4) {
+  position: absolute;
+  top: 40px;
+  right: auto;
+  bottom: auto;
+  left: 50vw;
+  background: radial-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.2));
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(4)::before {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 20%;
+  height: 20%;
+  border-radius: 100%;
+}
+.bubble-spawn .bubble:nth-of-type(4)::after {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  bottom: auto;
+  left: auto;
+  content: "";
+  background: radial-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.09));
+  width: 50%;
+  height: 50%;
+  border-radius: 100%;
+}
+
+@-webkit-keyframes swim-intro {
+  0% {
+    -webkit-transform: translateY(300%);
+            transform: translateY(300%);
+  }
+  33% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  66% {
+    -webkit-transform: translateY(80%);
+            transform: translateY(80%);
+  }
+  100% {
+    -webkit-transform: translateY(-70%);
+            transform: translateY(-70%);
+  }
+}
+
+@keyframes swim-intro {
+  0% {
+    -webkit-transform: translateY(300%);
+            transform: translateY(300%);
+  }
+  33% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  66% {
+    -webkit-transform: translateY(80%);
+            transform: translateY(80%);
+  }
+  100% {
+    -webkit-transform: translateY(-70%);
+            transform: translateY(-70%);
+  }
+}
+@-webkit-keyframes swim {
+  from {
+    -webkit-transform: translateY(-70%);
+            transform: translateY(-70%);
+  }
+  to {
+    -webkit-transform: translateY(-40%);
+            transform: translateY(-40%);
+  }
+}
+@keyframes swim {
+  from {
+    -webkit-transform: translateY(-70%);
+            transform: translateY(-70%);
+  }
+  to {
+    -webkit-transform: translateY(-40%);
+            transform: translateY(-40%);
+  }
+}
+@-webkit-keyframes move-tentacle-60 {
+  from {
+    height: 60%;
+    bottom: -60%;
+  }
+  to {
+    height: 50%;
+    bottom: -50%;
+  }
+}
+@keyframes move-tentacle-60 {
+  from {
+    height: 60%;
+    bottom: -60%;
+  }
+  to {
+    height: 50%;
+    bottom: -50%;
+  }
+}
+@-webkit-keyframes move-tentacle-75 {
+  from {
+    height: 75%;
+    bottom: -75%;
+  }
+  to {
+    height: 60%;
+    bottom: -60%;
+  }
+}
+@keyframes move-tentacle-75 {
+  from {
+    height: 75%;
+    bottom: -75%;
+  }
+  to {
+    height: 60%;
+    bottom: -60%;
+  }
+}
+@-webkit-keyframes bubble {
+  from {
+    -webkit-transform: translateY(-10%);
+            transform: translateY(-10%);
+  }
+  to {
+    -webkit-transform: translateY(10%);
+            transform: translateY(10%);
+  }
+}
+@keyframes bubble {
+  from {
+    -webkit-transform: translateY(-10%);
+            transform: translateY(-10%);
+  }
+  to {
+    -webkit-transform: translateY(10%);
+            transform: translateY(10%);
+  }
+}
+@-webkit-keyframes left-right {
+  from {
+    -webkit-transform: translateX(-1%);
+            transform: translateX(-1%);
+  }
+  to {
+    -webkit-transform: translateX(1%);
+            transform: translateX(1%);
+  }
+}
+@keyframes left-right {
+  from {
+    -webkit-transform: translateX(-1%);
+            transform: translateX(-1%);
+  }
+  to {
+    -webkit-transform: translateX(1%);
+            transform: translateX(1%);
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+    height: 6%;
+  }
+  50% {
+    height: 6%;
+  }
+  79% {
+    height: 6%;
+  }
+  80% {
+    height: 2%;
+  }
+  90% {
+    height: 6%;
+  }
+}
+@keyframes blink {
+  0% {
+    height: 6%;
+  }
+  50% {
+    height: 6%;
+  }
+  79% {
+    height: 6%;
+  }
+  80% {
+    height: 2%;
+  }
+  90% {
+    height: 6%;
+  }
+}
+@-webkit-keyframes float-up {
+  from {
+    -webkit-transform: translate(0, 40vh);
+            transform: translate(0, 40vh);
+  }
+  to {
+    -webkit-transform: translate(0, -25vh);
+            transform: translate(0, -25vh);
+  }
+}
+@keyframes float-up {
+  from {
+    -webkit-transform: translate(0, 40vh);
+            transform: translate(0, 40vh);
+  }
+  to {
+    -webkit-transform: translate(0, -25vh);
+            transform: translate(0, -25vh);
+  }
+}

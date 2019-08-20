@@ -1,0 +1,297 @@
+* {
+  box-sizing: border-box;
+}
+
+$jelly-color: #00bcff;
+$jelly-width: 100px;
+$jelly-height: 100px;
+$jelly-eye-size: 6%;
+$ocean-color: #1267ba;
+
+@mixin abs-pos($top, $right, $bottom, $left) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin grad-before(
+  $direction: to bottom, 
+  $start-color:rgba(white,0.2%), 
+  $end-color:rgba(white,0),
+  $top: 10%, 
+  $right: 10%, 
+  $bottom: 0, 
+  $left: 10%,
+  $radius: 100% 100% 0 0
+  ) {
+  &::before {
+    content: "";
+    background: linear-gradient($direction, $start-color, $end-color);
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    transform-origin: center;
+    @include abs-pos($top,$right,$bottom,$left);
+    border-radius: $radius;
+  }
+}
+
+.ocean {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $ocean-color;
+}
+
+.jelly-wrap {
+  width: $jelly-width;
+  height: $jelly-height;
+  flex-grow: 0.05;
+  animation: left-right 2.2s ease-in-out alternate infinite;
+}
+
+.jelly {
+  background: $jelly-color;
+  width: $jelly-width;
+  height: $jelly-height;
+  border-radius: 100% 100% 0 0;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  @include grad-before();
+  transform: translateY(-50%);
+  animation: swim-intro 2s ease-in-out forwards;
+  .eye {
+    background: black;
+    width: $jelly-eye-size;
+    height: $jelly-eye-size;
+    border-radius: 100%;
+    position: absolute;
+    animation: blink 3.2s ease-in-out infinite;
+    &:nth-of-type(1) {
+      @include abs-pos(auto, 0, 20%, 20%);
+    }
+    &:nth-of-type(2) {
+      @include abs-pos(auto, 20%, 20%, auto);
+    }
+    @include grad-before(
+      to bottom, 
+      rgba(white, 0.6%), 
+      rgba(white, 0), 
+      6%
+      );
+  } // .eye
+
+  .tentacle {
+    background: lighten($jelly-color, 10%);
+    width: 10%;
+    border-radius: 0 0 10% 10%;
+    position: absolute;
+    z-index: 1;
+    &:nth-of-type(1) {
+      @include abs-pos(auto, 0, -60%, 0);
+      height: 60%;
+      animation: move-tentacle-60 2s ease-in-out alternate infinite;
+    }
+    &:nth-of-type(2) {
+      @include abs-pos(auto, 0, -75%, 30%);
+      height: 75%;
+      animation: move-tentacle-75 3s ease-in-out alternate infinite;
+    }
+    &:nth-of-type(3) {
+      @include abs-pos(auto, 30%, -75%, auto);
+      height: 75%;
+      animation: move-tentacle-75 2s ease-in-out alternate infinite;
+    }
+    &:nth-of-type(4) {
+      @include abs-pos(auto, 0, -60%, auto);
+      height: 60%;
+      animation: move-tentacle-60 3s ease-in-out alternate infinite;
+    }
+    @include grad-before(
+      to bottom, 
+      rgba(white,0.3%), 
+      rgba(white,0), 
+      auto,
+      auto,
+      auto,
+      auto,
+      0 0 10% 10%
+      );
+  } // .tentacle
+} // .jelly
+
+@mixin bubble(
+  $top: 10%, 
+  $right: 10%, 
+  $bottom: auto, 
+  $left: auto, 
+  $size: 60px
+  ) {
+  position: absolute;
+  @include abs-pos($top, $right, $bottom, $left);
+  background: radial-gradient(rgba(white, 0.09%), rgba(white, 0.2%));
+  width: $size;
+  height: $size;
+  border-radius: 100%;
+  &::before {
+    position: absolute;
+    @include abs-pos(15%, 20%, auto, auto);
+    content: "";
+    background: radial-gradient(rgba(white, 0.01%), rgba(white, 0.09%));
+    width: 20%;
+    height: 20%;
+    border-radius: 100%;
+  }
+  &::after {
+    position: absolute;
+    @include abs-pos(10%, 10%, auto, auto);
+    content: "";
+    background: radial-gradient(rgba(white, 0.01%), rgba(white, 0.09%));
+    width: 50%;
+    height: 50%;
+    border-radius: 100%;
+  }
+}
+
+.swimming {
+  animation: swim 2s ease-in-out alternate infinite;
+}
+
+.bubble-wrap {
+  animation: left-right 4.2s ease-in-out alternate infinite;
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+}
+
+.bubble {
+  &:nth-of-type(1) {
+    @include bubble(10%,10%,auto,auto, 30px);
+    animation: bubble 3.6s ease-in-out alternate infinite;
+  }
+  &:nth-of-type(2) {
+    @include bubble(auto,10%,10%,auto,60px);
+    animation: bubble 2.1s ease-in-out alternate infinite;
+  }
+  &:nth-of-type(3) {
+    @include bubble(auto,auto,10%,10%,30px);
+    animation: bubble 2.5s ease-in-out alternate infinite;
+  }
+  &:nth-of-type(4) {
+    @include bubble(10%,auto,auto,10%,60px);
+    animation: bubble 3.2s ease-in-out alternate infinite;
+  }
+}
+
+.bubble-spawn {
+  animation: float-up 6s ease-out forwards;
+  .bubble {
+    &:nth-of-type(1) {
+      @include bubble(20px, auto, auto, 52vw, 10px);
+    }
+    &:nth-of-type(2) {
+      @include bubble(10px, auto, auto, 50vw, 12px);
+    }
+    &:nth-of-type(3) {
+      @include bubble(30px, auto, auto, 48vw, 13px);
+    }
+    &:nth-of-type(4) {
+      @include bubble(40px, auto, auto, 50vw, 10px);
+    }
+  }
+}
+
+@keyframes swim-intro {
+  0% {
+    transform: translateY(300%);
+  }
+  33% {
+    transform: translateY(-100%);
+  }
+  66% {
+    transform: translateY(80%);
+  }
+  100% {
+    transform: translateY(-70%);
+  }
+}
+
+@keyframes swim {
+  from {
+    transform: translateY(-70%);
+  }
+  to {
+    transform: translateY(-40%);
+  }
+}
+
+@keyframes move-tentacle-60 {
+  from {
+    height: 60%;
+    bottom: -60%;
+  }
+  to {
+    height: 50%;
+    bottom: -50%;
+  }
+}
+
+@keyframes move-tentacle-75 {
+  from {
+    height: 75%;
+    bottom: -75%;
+  }
+  to {
+    height: 60%;
+    bottom: -60%;
+  }
+}
+
+@keyframes bubble {
+  from {
+    transform: translateY(-10%);
+  }
+  to {
+    transform: translateY(10%);
+  }
+}
+
+@keyframes left-right {
+  from {
+    transform: translateX(-1%);
+  }
+  to {
+    transform: translateX(1%);
+  }
+}
+
+@keyframes blink {
+  0% {
+    height: $jelly-eye-size;
+  }
+  50% {
+    height: $jelly-eye-size;
+  }
+  79% {
+    height: $jelly-eye-size;
+  }
+  80% {
+    height: 2%;
+  }
+  90% {
+    height: $jelly-eye-size;
+  }
+}
+
+@keyframes float-up {
+  from {
+    transform: translate(0, 40vh);
+  }
+  to {
+    transform: translate(0, -25vh);
+  }
+}
